@@ -14,9 +14,7 @@ json_keymap_from_hyprland() {
   hyprctl -i "$instance" -j binds > "json/${filename}.json"
 
   echo "Wrote: json/${filename}.json"
-  # 4. Kill the nested instance
   kill "$PID"
-  #cat output.json
 }
 
 fname() {
@@ -27,8 +25,16 @@ fname() {
   echo "$filename"
 }
 
-for file in hypr/*; do 
-    if [ -f "$file" ]; then 
-        json_keymap_from_hyprland "$file" 
-    fi 
-done
+if [ -n "$1" ]; then
+  if test -f "$1"; then
+    json_keymap_from_hyprland "$1"
+  else
+    echo "File ${1} does not exist."
+  fi
+else
+  for file in hypr/*; do 
+      if [ -f "$file" ]; then 
+          json_keymap_from_hyprland "$file" 
+      fi 
+  done
+fi

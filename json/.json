@@ -2647,7 +2647,24 @@
     "key": "K",
     "keycode": 0,
     "catch_all": false,
-    "description": "Show Custom key bindings",
+    "description": "Show Context key bindings",
     "dispatcher": "exec",
     "arg": "~/.local/share/omarchy.plugins/cakb/bin/omplug-cakb-keybindings"
+},
+{
+    "locked": false,
+    "mouse": false,
+    "release": false,
+    "repeat": false,
+    "longPress": false,
+    "non_consuming": false,
+    "has_description": true,
+    "modmask": 68,
+    "submap": "",
+    "key": "M",
+    "keycode": 0,
+    "catch_all": false,
+    "description": "Mount fstab",
+    "dispatcher": "exec",
+    "arg": "~/Tasks/Mount"
 }]
