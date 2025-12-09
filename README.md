@@ -7,15 +7,21 @@ This is mainly a Plugin for Omarchy using Walker, but can be used in any Hyprlan
 It basically echoes Key bindings text for Walker according to your active Hyprland Window (Each app needs a separate "yourapp.conf"
 but only for generating the output).
 
-Add a new entry to your `~/.config/hypr/bindings.conf` to be able to open the key Context menu:
+## Setup
+
+- Copy or clone the files into `~/.local/share/omarchy.plugins/cakb`
+
+- Add a new entry to your `~/.config/hypr/bindings.conf` to be able to open the key Context menu:
 
 `bindd = SUPER SHIFT, K, Show Context key bindings, exec, ~/.local/share/omarchy.plugins/cakb/bin/omplug-cakb-keybindings`
+
+- Open a terminal (Ghostty) and try the Key bindings !
 
 > By now this ships with Key bindings for Ghostty, Zen Browser and Obsidian
 
 ## Creating new Context Bindings
 To add a cheatsheet for a new app, create a file in `hypr/yourapp.conf` and run `./compile` to create a new `json/yourapp.json` 
-(This will open briefly a new hyprland window and then close for each .conf file).
+(This will open briefly a new hyprland window and then close it for each .conf file).
 To get the required filename for your corresponding .conf and app check it on hyprctl (app needs to be open):
 
 `hyprctl clients -j | grep -i yourapp`
