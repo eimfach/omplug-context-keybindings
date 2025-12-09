@@ -1,0 +1,50 @@
+#!/bin/bash
+
+declare CAKB_JSON_FOLDER="${HOME}/.local/share/omarchy.plugins/cakb/json"
+declare CAKB_USER_JSON_FOLDER="~/.config/cakb/json"
+
+dynamic_bindings() {
+  local active_window config
+  local keymap=`cat unknown_app.json`
+  active_window_json=`hyprctl activewindow -j`
+  local active_window_class=`echo ${active_window_json} | jq -r '{initialClass} | "\(.initialClass)"'`
+  local active_window_title=`echo ${active_window_json} | jq -r '{initialTitle} | "\(.initialTitle)"'`
+
+  config="${CAKB_JSON_FOLDER}/${active_window_class}.json"
+  if test -f "$config"; then
+    keymap=`cat ${config}`
+  fi
+
+  config="${CAKB_USER_JSON_FOLDER}/${active_window_class}.json"
+  if test -f "$config"; then
+    keymap=`cat ${config}`
+  fi
+
+  echo "$keymap" |
+    jq -r '.[] | {modmask, key, keycode, description, dispatcher, arg} | "\(.modmask),\(.key)@\(.keycode),\(.description),\(.dispatcher),\(.arg)"' |
+    sed -r \
+      -e 's/null//' \
+      -e 's,~/.local/share/omarchy/bin/,,' \
+      -e 's,uwsm app -- ,,' \
+      -e 's,uwsm-app -- ,,' \
+      -e 's/@0//' \
+      -e 's/,@/,code:/' \
+      -e 's/^0,/,/' \
+      -e 's/^1,/SHIFT,/' \
+      -e 's/^4,/CTRL,/' \
+      -e 's/^5,/SHIFT CTRL,/' \
+      -e 's/^8,/ALT,/' \
+      -e 's/^9,/SHIFT ALT,/' \
+      -e 's/^12,/CTRL ALT,/' \
+      -e 's/^13,/SHIFT CTRL ALT,/' \
+      -e 's/^64,/SUPER,/' \
+      -e 's/^65,/SUPER SHIFT,/' \
+      -e 's/^68,/SUPER CTRL,/' \
+      -e 's/^69,/SUPER SHIFT CTRL,/' \
+      -e 's/^72,/SUPER ALT,/' \
+      -e 's/^73,/SUPER SHIFT ALT,/' \
+      -e 's/^76,/SUPER CTRL ALT,/' \
+      -e 's/^77,/SUPER SHIFT CTRL ALT,/'
+}
+
+dynamic_bindings

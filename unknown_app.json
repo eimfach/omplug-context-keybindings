@@ -1,0 +1,18 @@
+[
+{
+    "locked": true,
+    "mouse": false,
+    "release": false,
+    "repeat": false,
+    "longPress": false,
+    "non_consuming": false,
+    "has_description": true,
+    "modmask": 0,
+    "submap": "",
+    "key": "Context Map: No Keymap for App",
+    "keycode": 0,
+    "catch_all": false,
+    "description": "Create One & Open PR",
+    "dispatcher": "exec",
+    "arg": "omarchy-launch-or-focus spotify"
+}]

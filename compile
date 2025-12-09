@@ -1,0 +1,34 @@
+#!/bin/bash
+# Usage: ./parse_hypr.sh ./my-custom-config.conf
+
+json_keymap_from_hyprland() {
+  hyprland --config "$1" > /dev/null 2>&1 &
+  PID=$!
+
+  sleep 1
+  local instance
+
+  instance=`hyprctl instances -j | jq -r '.[-1] | {instance} | "\(.instance)"'`
+
+  filename=`fname $1`
+  hyprctl -i "$instance" -j binds > "json/${filename}.json"
+
+  echo "Wrote: json/${filename}.json"
+  # 4. Kill the nested instance
+  kill "$PID"
+  #cat output.json
+}
+
+fname() {
+  filepath="$1"
+  filename=$(basename "$filepath")
+  extension="${filename##*.}"
+  filename="${filename%.*}"
+  echo "$filename"
+}
+
+for file in hypr/*; do 
+    if [ -f "$file" ]; then 
+        json_keymap_from_hyprland "$file" 
+    fi 
+done
