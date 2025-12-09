@@ -30,7 +30,7 @@ The filename is in the property `initialClass`
 
 After the json file was created you are ready to go ! `SUPER + SHIFT + K`
 
-INFO: All .json files can also be overriden in `.config/cakb/json/youroverride.json`.
+INFO: All .json files can also be overriden in `~/.config/cakb/json/youroverride.json`.
 
 INFO: The hyprland .conf files in `hypr/` do not get loaded into your hyprland config.
 They are only used to parse and compile appropriate Key bindings for your keyboard to json.
