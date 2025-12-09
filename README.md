@@ -15,7 +15,7 @@ but only for generating the output).
 
 `bindd = SUPER SHIFT, K, Show Context key bindings, exec, ~/.local/share/omarchy.plugins/cakb/bin/omplug-cakb-keybindings`
 
-- Open a terminal (Ghostty) and try the Key bindings !
+- Open a terminal (Ghostty) and try `SUPER + SHIFT + K` !
 
 > By now this ships with Key bindings for Ghostty, Zen Browser and Obsidian
 
